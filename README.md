@@ -1,5 +1,5 @@
 # triagelib
-API Wrapper for new Cofense Triage API.
+API Wrapper for Cofense Triage API.
 
 
 # Setup
