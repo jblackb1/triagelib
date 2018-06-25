@@ -414,7 +414,7 @@ class TriageSession:
 
         return self._parse(resp.text)
 
-    # --- TriageSession.inbox_reports() method ---
+    # --- TriageSession.clusters() method ---
     def clusters(self, match_priority=None, start_date=None,
                  end_date=None, page=None, per_page=None, tags=None):
         """Searches current Triage inbox for new email reports.
