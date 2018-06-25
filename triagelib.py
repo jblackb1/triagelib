@@ -419,6 +419,7 @@ class TriageSession:
                  end_date=None, page=None, per_page=None, tags=None):
         """Searches current Triage inbox for new email reports.
 
+        tags (list) - One or more tags of processed reports to filter on.
         page (int) - The page number for the results.
         per_page (integer) - The number of results rendered per page. The maximum value is 50 results per page.
         start_date (str) - The start date and time of the query. The default is six days ago.
