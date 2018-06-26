@@ -5,6 +5,8 @@ API Wrapper for Cofense Triage API.
 # Setup
 triagelib requires an instance of Cofense Triage within your environment, an account with Administrator access, and an API key generated from your Triage instance.
 
+    pip install git+https://github.com/jblackb1/triagelib@master
+
     >>>from triagelib import TriageSession
     >>>triage = TriageSession(host=<hostname>, email=<email>, apikey=<api key>)
 
