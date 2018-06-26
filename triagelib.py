@@ -140,8 +140,7 @@ class TriageSession:
         match_priority (int) - The highest match priority based on rule hits for the report.
         """
 
-        triagelog.info(
-            u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
+        triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
                                                                                       self._email))
 
         if not isinstance(self._email, str):
@@ -212,8 +211,7 @@ class TriageSession:
         match_priority (int) - The highest match priority based on rule hits for the report.
         """
 
-        triagelog.info(
-            u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
+        triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
                                                                                       self._email))
 
         if not isinstance(self._email, str):
@@ -276,8 +274,7 @@ class TriageSession:
         match_priority (int) - The highest match priority based on rule hits for the report.
         """
 
-        triagelog.info(
-            u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
+        triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
                                                                                       self._email))
 
         if not isinstance(self._email, str):
@@ -331,8 +328,7 @@ class TriageSession:
 
         """
 
-        triagelog.info(
-            u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
+        triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
                                                                                       self._email))
 
         if not isinstance(self._email, str):
@@ -395,9 +391,6 @@ class TriageSession:
         if [sha256, md5, searchurl].count(None) == 3:
             raise ValueError(__name__ + u'Triage.integration_search takes exactly 1 argument. You gave none.')
 
-        # I know this is confusing but I am not going to rename a variable a user has to input
-        # nor am I renaming the url variable that is sent with the request. :)
-
         url = 'http{0}://{1}/api/public/v1/integration_search?{2}'.format(('s' if self._usessl else ''),
                                                                           self._triagehost,
                                                                           "&".join(params))
@@ -427,8 +420,7 @@ class TriageSession:
         match_priority (int) - The highest match priority based on rule hits for the report.
         """
 
-        triagelog.info(
-            u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
+        triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
                                                                                       self._email))
 
         if not isinstance(self._email, str):
