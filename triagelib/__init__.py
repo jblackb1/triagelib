@@ -46,7 +46,7 @@ class TriageSession:
     debug = False
 
     def __init__(self, host, email, apikey, ssl=True, uag='Python CoFense Triage Client'):
-        """Instantiate a new session object with options.
+        """
         Set ssl to False if you like to connect using plain HTTP (Triage must not redirect to HTTPS),
         Set uag to a desired User-Agent header value.
         """
