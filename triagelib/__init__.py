@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 
 import json
@@ -42,8 +42,6 @@ class TriageFailureError(TriageError):
 class TriageSession:
     """Class maintaining Triage connectivity through API."""
 
-    # ------- Public static class attributes -------
-
     apiver = '1.0.0'  # API version implemented/required
     debug = False
 
@@ -68,9 +66,6 @@ class TriageSession:
                          'user-agent': self._userag,
                          'Authorization': 'Token token={0}:{1}'.format(self._email, self._apikey)}
 
-    # ===== Private class methods =====
-
-    # --- TriageSession._reqsend() method ---
     def _reqsend(self, prep, host=''):
         """Sends prepared request.
         Used by all other methods.
@@ -102,7 +97,6 @@ class TriageSession:
 
         return resp
 
-    # --- TriageSession._parse() method ---
     def _parse(self, src):
         """Parses source text as json entity.
         Returns result of parser(src).
@@ -124,8 +118,6 @@ class TriageSession:
         return res
 
     # ===== Public class methods =====
-
-    # --- TriageSession.reports() method ---
     def reports(self, match_priority=None, category_id=None, start_date=None,
                 tags=None, end_date=None, page=None, per_page=None, report_id=None):
         """Searches all Triage reports.
@@ -197,7 +189,6 @@ class TriageSession:
 
         return self._parse(resp.text)
 
-    # --- TriageSession.processed_reports() method ---
     def processed_reports(self, match_priority=None, category_id=None, start_date=None,
                           tags=None, end_date=None, page=None, per_page=None):
         """Searches all Triage reports.
@@ -262,7 +253,6 @@ class TriageSession:
 
         return self._parse(resp.text)
 
-    # --- TriageSession.inbox_reports() method ---
     def inbox_reports(self, match_priority=None, start_date=None,
                       end_date=None, page=None, per_page=None):
         """Searches current Triage inbox for new email reports.
@@ -319,7 +309,6 @@ class TriageSession:
 
         return self._parse(resp.text)
 
-    # --- TriageSession.attachment() method ---
     def attachment(self, attachment_id, mime_type):
         """Downloads attachment from a phishing email based on attachment ID.
 
@@ -355,7 +344,6 @@ class TriageSession:
 
         return resp.content
 
-    # --- TriageSession.integration_search() method ---
     def integration_search(self, sha256=None, md5=None, searchurl=None):
         """Fetches integration results based on hash (MD5/SHA256) or URL.
 
@@ -407,7 +395,6 @@ class TriageSession:
 
         return self._parse(resp.text)
 
-    # --- TriageSession.clusters() method ---
     def clusters(self, match_priority=None, start_date=None,
                  end_date=None, page=None, per_page=None, tags=None):
         """Searches current Triage inbox for new email reports.
@@ -469,7 +456,6 @@ class TriageSession:
         return self._parse(resp.text)
 
 
-# --- Initialize module: ---
 # Disable SSL security warning
 requests.packages.urllib3.disable_warnings()
 # Define logger
