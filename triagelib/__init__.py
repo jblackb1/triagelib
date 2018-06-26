@@ -457,6 +457,9 @@ class TriageSession:
 
 
 # Disable SSL security warning
-requests.packages.urllib3.disable_warnings()
+try:
+    requests.packages.urllib3.disable_warnings()
+except AttributeError:
+    pass
 # Define logger
 triagelog = logging.getLogger(__name__)
