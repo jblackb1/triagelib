@@ -4,12 +4,11 @@ from setuptools import setup, find_packages
 
 setup(
       name='triagelib',
-      version='1.0',
+      version='1.0.0',
       author='Jacob Blackburn',
       license='MIT',
       url='https://github.com/jblackb1/triagelib',
       description='Cofense Triage REST API wrapper',
       long_description=open('README.md').read(),
-      zip_safe=True,
       packages=find_packages()
       )
