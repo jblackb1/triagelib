@@ -7,8 +7,7 @@ setup(
       version='1.0',
       author='Jacob Blackburn',
       license='MIT',
-      url='https://github.com/jblackb1/triagelib'
-      packages=['triagelib'],
+      url='https://github.com/jblackb1/triagelib',
       description='Cofense Triage REST API wrapper',
       long_description=open('README.md').read(),
       zip_safe=True,
