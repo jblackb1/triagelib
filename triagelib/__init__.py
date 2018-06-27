@@ -133,7 +133,7 @@ class TriageSession:
         """
 
         triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
-                                                                                      self._email))
+                                                                                                 self._email))
 
         if not isinstance(self._email, str):
             raise TypeError(__name__ + u': email parameter must be a string')
@@ -156,34 +156,30 @@ class TriageSession:
         if match_priority and not isinstance(match_priority, int):
             raise TypeError(__name__ + u': match_priority parameter must be an integer')
 
-        params = []
+        params = {}
 
-        if tags: params.append("tags=" + ",".join(tags))
-        if page: params.append("page=" + str(page))
-        if per_page: params.append("per_page=" + str(per_page))
-        if start_date: params.append("start_date=" + start_date)
-        if end_date: params.append("end_date=" + end_date)
-        if match_priority: params.append("match_priority=" + str(match_priority))
-        if category_id: params.append("category_id=" + str(category_id))
+        if tags: params["tags"] = tags
+        if page: params["page"] = page
+        if per_page: params["per_page"] = per_page
+        if start_date: params["start_date"] = start_date
+        if end_date: params["end_date"] = end_date
+        if match_priority: params["match_priority"] = match_priority
+        if category_id: params["category_id"] = category_id
 
         if report_id:
             url = 'http{0}://{1}/api/public/v1/reports/{2}'.format(('s' if self._usessl else ''),
                                                                    self._triagehost,
                                                                    report_id)
-        elif params:
-            url = 'http{0}://{1}/api/public/v1/reports?{2}'.format(('s' if self._usessl else ''),
-                                                                   self._triagehost,
-                                                                   '&'.join(params))
         else:
             url = 'http{0}://{1}/api/public/v1/reports'.format(('s' if self._usessl else ''),
-                                                               self._triagehost)
+                                                                   self._triagehost)
 
         headers = self._headers.copy()
         headers.update({'Content-Type': 'application/json'})
 
-        triagelog.debug(u'url = "{0}", headers = "{1}"'.format(url, headers))
+        triagelog.debug(u'url = "{0}", headers = "{1}", params = "{2}"'.format(url, headers, params))
 
-        req = Request('GET', url, headers=headers)
+        req = Request('GET', url, headers=headers, params=params)
         prep = req.prepare()
         resp = self._reqsend(prep, self._triagehost)
 
@@ -203,7 +199,7 @@ class TriageSession:
         """
 
         triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
-                                                                                      self._email))
+                                                                                                 self._email))
 
         if not isinstance(self._email, str):
             raise TypeError(__name__ + u': email parameter must be a string')
@@ -224,30 +220,25 @@ class TriageSession:
         if match_priority and not isinstance(match_priority, int):
             raise TypeError(__name__ + u': match_priority parameter must be an integer')
 
-        params = []
+        params = {}
 
-        if tags: params.append("tags=" + ",".join(tags))
-        if page: params.append("page=" + str(page))
-        if per_page: params.append("per_page=" + str(per_page))
-        if start_date: params.append("start_date=" + start_date)
-        if end_date: params.append("end_date=" + end_date)
-        if category_id: params.append("category_id=" + str(category_id))
-        if match_priority: params.append("match_priority=" + str(match_priority))
+        if tags: params["tags"] = tags
+        if page: params["page"] = page
+        if per_page: params["per_page"] = per_page
+        if start_date: params["start_date"] = start_date
+        if end_date: params["end_date"] = end_date
+        if category_id: params["category_id"] = category_id
+        if match_priority: params["match_priority"] = match_priority
 
-        if params:
-            url = 'http{0}://{1}/api/public/v1/processed_reports?{2}'.format(('s' if self._usessl else ''),
-                                                                             self._triagehost,
-                                                                             '&'.join(params))
-        else:
-            url = 'http{0}://{1}/api/public/v1/processed_reports'.format(('s' if self._usessl else ''),
-                                                                         self._triagehost)
+        url = 'http{0}://{1}/api/public/v1/processed_reports'.format(('s' if self._usessl else ''),
+                                                                     self._triagehost)
 
         headers = self._headers.copy()
         headers.update({'Content-Type': 'application/json'})
+        
+        triagelog.debug(u'url = "{0}", headers = "{1}", params = "{2}"'.format(url, headers, params))
 
-        triagelog.debug(u'url = "{0}", headers = "{1}"'.format(url, headers))
-
-        req = Request('GET', url, headers=headers)
+        req = Request('GET', url, headers=headers, params=params)
         prep = req.prepare()
         resp = self._reqsend(prep, self._triagehost)
 
@@ -265,7 +256,7 @@ class TriageSession:
         """
 
         triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
-                                                                                      self._email))
+                                                                                                 self._email))
 
         if not isinstance(self._email, str):
             raise TypeError(__name__ + u': email parameter must be a string')
@@ -282,28 +273,23 @@ class TriageSession:
         if match_priority and not isinstance(match_priority, int):
             raise TypeError(__name__ + u': match_priority parameter must be an integer')
 
-        params = []
+        params = {}
 
-        if page: params.append("page=" + str(page))
-        if per_page: params.append("per_page=" + str(per_page))
-        if start_date: params.append("start_date=" + start_date)
-        if end_date: params.append("end_date=" + end_date)
-        if match_priority: params.append("match_priority=" + str(match_priority))
+        if page: params["page"] = page
+        if per_page: params["per_page"] = per_page
+        if start_date: params["start_date"] = start_date
+        if end_date: params["end_date"] = end_date
+        if match_priority: params["match_priority"] = match_priority
 
-        if params:
-            url = 'http{0}://{1}/api/public/v1/inbox_reports?{2}'.format(('s' if self._usessl else ''),
-                                                                         self._triagehost,
-                                                                         '&'.join(params))
-        else:
-            url = 'http{0}://{1}/api/public/v1/inbox_reports'.format(('s' if self._usessl else ''),
-                                                                     self._triagehost)
+        url = 'http{0}://{1}/api/public/v1/inbox_reports'.format(('s' if self._usessl else ''),
+                                                                 self._triagehost)
 
         headers = self._headers.copy()
         headers.update({'Content-Type': 'application/json'})
 
-        triagelog.debug(u'url = "{0}", headers = "{1}"'.format(url, headers))
+        triagelog.debug(u'url = "{0}", headers = "{1}", params = "{2}"'.format(url, headers, params))
 
-        req = Request('GET', url, headers=headers)
+        req = Request('GET', url, headers=headers, params=params)
         prep = req.prepare()
         resp = self._reqsend(prep, self._triagehost)
 
@@ -314,11 +300,10 @@ class TriageSession:
 
         attachment_id (int) - The numeric ID associated with the attachment.
         mime_type (str) - mime type of the attachment.
-
         """
 
         triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
-                                                                                      self._email))
+                                                                                                 self._email))
 
         if not isinstance(self._email, str):
             raise TypeError(__name__ + u': email parameter must be a string')
@@ -350,17 +335,13 @@ class TriageSession:
         md5 (str) - md5 hash of the file being searched.
         url (str) - url being searched. DO NOT SUBMIT IF PII IN THE URL!!!
         sha256 (str) - sha256 hash of the file being searched.
-
         """
 
-        params = []
+        params = {}
 
-        if searchurl:
-            params.append("searchurl=" + searchurl)
-        if md5:
-            params.append("md5=" + md5)
-        if sha256:
-            params.append("sha256=" + sha256)
+        if md5: params["md5"] = md5
+        if sha256: params["sha256"] = sha256
+        if searchurl: params["searchurl"] = searchurl
 
         triagelog.info(u'------- User {0} searching integrations for {1} -------'.format(self._email,
                                                                                          params))
@@ -376,20 +357,18 @@ class TriageSession:
         if md5 and not isinstance(md5, str):
             raise TypeError(__name__ + u': sha256 parameter must be a string')
 
-        if [sha256, md5, searchurl].count(None) == 3:
-            raise ValueError(__name__ + u'Triage.integration_search takes exactly 1 argument. You gave none.')
+        if not params:
+            raise ValueError(__name__ + u'Triage.integration_search requires exactly 1 argument. You gave none.')
 
-        url = 'http{0}://{1}/api/public/v1/integration_search?{2}'.format(('s' if self._usessl else ''),
-                                                                          self._triagehost,
-                                                                          "&".join(params))
+        url = 'http{0}://{1}/api/public/v1/integration_search'.format(('s' if self._usessl else ''),
+                                                                      self._triagehost)
 
         headers = self._headers.copy()
         headers.update({'Content-Type': 'application/json'})
 
-        triagelog.debug(u'url = "{0}", headers = "{1}"'.format(url,
-                                                               headers))
+        triagelog.debug(u'url = "{0}", headers = "{1}", params = "{2}"'.format(url, headers, params))
 
-        req = Request('GET', url, headers=headers)
+        req = Request('GET', url, headers=headers, params=params)
         prep = req.prepare()
         resp = self._reqsend(prep, self._triagehost)
 
@@ -397,7 +376,7 @@ class TriageSession:
 
     def clusters(self, match_priority=None, start_date=None,
                  end_date=None, page=None, per_page=None, tags=None):
-        """Searches current Triage inbox for new email reports.
+        """Searches current Triage inbox for unique report clusters.
 
         tags (list) - One or more tags of processed reports to filter on.
         page (int) - The page number for the results.
@@ -408,7 +387,7 @@ class TriageSession:
         """
 
         triagelog.info(u'------- Opening new session to server {0} with user {1} -------'.format(self._triagehost,
-                                                                                      self._email))
+                                                                                                 self._email))
 
         if not isinstance(self._email, str):
             raise TypeError(__name__ + u': email parameter must be a string')
@@ -427,29 +406,24 @@ class TriageSession:
         if match_priority and not isinstance(match_priority, int):
             raise TypeError(__name__ + u': match_priority parameter must be an integer')
 
-        params = []
+        params = {}
 
-        if tags: params.append("tags=" + tags)
-        if page: params.append("page=" + str(page))
-        if per_page: params.append("per_page=" + str(per_page))
-        if start_date: params.append("start_date=" + start_date)
-        if end_date: params.append("end_date=" + end_date)
-        if match_priority: params.append("match_priority=" + str(match_priority))
+        if tags: params["tags"] = tags
+        if page: params["page"] = page
+        if per_page: params["per_page"] = per_page
+        if start_date: params["start_date"] = start_date
+        if end_date: params["end_date"] = end_date
+        if match_priority: params["match_priority"] = match_priority
 
-        if params:
-            url = 'http{0}://{1}/api/public/v1/clusters?{2}'.format(('s' if self._usessl else ''),
-                                                                    self._triagehost,
-                                                                    '&'.join(params))
-        else:
-            url = 'http{0}://{1}/api/public/v1/clusters'.format(('s' if self._usessl else ''),
-                                                                self._triagehost)
+        url = 'http{0}://{1}/api/public/v1/clusters'.format(('s' if self._usessl else ''),
+                                                            self._triagehost)
 
         headers = self._headers.copy()
         headers.update({'Content-Type': 'application/json'})
 
-        triagelog.debug(u'url = "{0}", headers = "{1}"'.format(url, headers))
+        triagelog.debug(u'url = "{0}", headers = "{1}", params = "{2}"'.format(url, headers, params))
 
-        req = Request('GET', url, headers=headers)
+        req = Request('GET', url, headers=headers, params=params)
         prep = req.prepare()
         resp = self._reqsend(prep, self._triagehost)
 
